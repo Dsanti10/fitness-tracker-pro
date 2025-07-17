@@ -7,6 +7,7 @@
 import { createContext, useContext, useState } from "react";
 
 import { API } from "../api/ApiContext";
+import { NavLink } from "react-router";
 
 const AuthContext = createContext();
 
@@ -39,8 +40,10 @@ export function AuthProvider({ children }) {
     setToken(result.token);
   };
 
-  const logout = () => setToken(null);
-
+  const logout = () => {
+    setToken(null);
+    <NavLink to="/register" />;
+  };
   const value = { token, register, login, logout };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
